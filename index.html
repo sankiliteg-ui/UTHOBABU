@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Morning, Annu!</title>
+    <style>
+        /* Import a Google Font for a nice style */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300&display=swap');
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Dark blue/purple gradient for the sky */
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden; /* Hide overflow for particle effects */
+        }
+
+        /* 1. Header Navigation */
+        header {
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #FFD700;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+        }
+
+        /* 2. Main Greeting Card */
+        .card {
+            text-align: center;
+            padding: 40px;
+            margin-top: 80px; /* Space down from header */
+            border: 1px solid rgba(255, 217, 0, 0.2);
+            border-radius: 15px;
+            background: rgba(15, 12, 41, 0.3); /* Translucent dark background */
+            backdrop-filter: blur(5px);
+            position: relative; /* For the light burst */
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        /* 3. The Central Light Burst */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            /* The radial gradient for the light */
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.6) 0%, rgba(255, 215, 0, 0) 65%);
+            opacity: 0.5;
+            z-index: 1;
+            /* Subtle pulse animation for the light */
+            animation: pulseLight 4s infinite ease-in-out;
+        }
+
+        @keyframes pulseLight {
+            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.4; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+            100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.4; }
+        }
+
+        /* 4. The Glowing Text */
+        .card-content {
+            position: relative; /* Keep content above the light burst */
+            z-index: 2;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            /* The key GLOWING effect using text-shadow */
+            text-shadow:
+                0 0 7px #fff,
+                0 0 10px #fff,
+                0 0 21px #fff,
+                0 0 42px #FFD700, /* Golden Glow */
+                0 0 82px #FFD700,
+                0 0 92px #FFD700,
+                0 0 102px #FFD700;
+            
+            /* Animation for the text glow */
+            animation: flickerGlow 2.5s infinite alternate;
+        }
+
+        /* Subtitle */
+        p {
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-top: 10px;
+            text-shadow: 0 0 10px #FFD700;
+            letter-spacing: 1px;
+        }
+
+        /* 5. Bottom Buttons */
+        .buttons {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 217, 0, 0.2);
+        }
+
+        .btn:hover {
+            background: #FFD700;
+            color: #101828;
+            box-shadow: 0 0 20px rgba(255, 217, 0, 0.5);
+        }
+
+        /* 6. Glowing Text Animation */
+        @keyframes flickerGlow {
+            from {
+                text-shadow:
+                    0 0 7px #fff,
+                    0 0 10px #fff,
+                    0 0 21px #fff,
+                    0 0 42px #FFD700,
+                    0 0 70px #FFD700,
+                    0 0 80px #FFD700,
+                    0 0 90px #FFD700;
+            }
+            to {
+                text-shadow:
+                    0 0 7px #fff,
+                    0 0 10px #fff,
+                    0 0 21px #fff,
+                    0 0 42px #FFD700,
+                    0 0 82px #FFD700,
+                    0 0 92px #FFD700,
+                    0 0 102px #FFD700,
+                    0 0 151px #FFD700;
+            }
+        }
+
+        /* 7. Starry Background (JavaScript will add stars) */
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            /* Animation for twinkling */
+            animation: twinkle 5s infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">ANNU </div>
+        <nav>
+            <a href="#">INSPIRATION</a>
+            <a href="#">SHARE</a>
+            <a href="#">ABOUT</a>
+        </nav>
+    </header>
+
+    <main class="card">
+        <div class="card-content">
+            <h1>GOOD MORNING BRO</h1>
+            <p>UTH JAO BABU😊</p>
+        </div>
+        
+        <div class="buttons">
+            <a href="#" class="btn">RAM RAM MITTAR</a>
+            <a href="#" class="btn">RADHE RADHE</a>
+            <a href="#" class="btn">WAHEGURU JI</a>
+        </div>
+    </main>
+
+    <script>
+        // JavaScript to create a simple starry background
+        function createStars() {
+            const body = document.body;
+            const starCount = 100; // Number of stars
+
+            for (let i = 0; i < starCount; i++) {
+                let star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random size (1, 2, or 3 pixels)
+                let size = Math.floor(Math.random() * 3) + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                // Random animation duration
+                star.style.animationDuration = `${(Math.random() * 5) + 3}s`;
+
+                body.appendChild(star);
+            }
+        }
+
+        // Run the function when the page loads
+        window.onload = createStars;
+    </script>
+
+</body>
+</html>
